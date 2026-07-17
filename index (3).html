@@ -1,0 +1,687 @@
+<!--
+  PHOTO FILE MAP — keep these filenames exactly as-is when uploading to GitHub.
+  All images live in the /images folder next to this index.html.
+
+  images/photo1.jpg  -> subway photo, both of you, red jacket / red dress
+  images/photo2.jpg  -> bathroom mirror selfie, brown leather jacket
+  images/photo3.jpg  -> him solo, holding red roses on an escalator
+  images/photo4.jpg  -> colorful projected-light photo booth style selfie
+  images/photo5.jpg  -> mirror selfie, matching grey/blue jackets
+  images/photo6.jpg  -> outdoor sunny selfie, sideways angle, sunglasses
+
+  Required folder structure in the GitHub repo:
+    /index.html
+    /images/photo1.jpg
+    /images/photo2.jpg
+    /images/photo3.jpg
+    /images/photo4.jpg
+    /images/photo5.jpg
+    /images/photo6.jpg
+
+  If you rename any image file, update its matching src="images/photoN.jpg"
+  below (search this file for "images/" to find every instance — there are 7
+  total: photo3 is used twice, once in the hero and once in the "why I'm
+  proud" section).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for the hardest working, most loved person i know</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #FBF3E7;
+    --paper-2: #F6EBDA;
+    --ink: #4A362B;
+    --ink-soft: #6b5545;
+    --pink: #F2A6B4;
+    --pink-deep: #E07E90;
+    --red: #C1443A;
+    --brown: #8B5E44;
+    --sage: #8AA07E;
+    --cream-card: #FFFDF8;
+    --tape: rgba(242,166,180,0.55);
+    --tape-yellow: rgba(255, 224, 130, 0.6);
+    --tape-sage: rgba(138,160,126,0.5);
+    --shadow: 0 14px 30px -12px rgba(74,54,43,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(242,166,180,0.15), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(138,160,126,0.15), transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(193,68,58,0.08), transparent 45%),
+      var(--paper);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* subtle paper grain */
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.35;
+    background-image: radial-gradient(rgba(74,54,43,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    z-index: 1;
+  }
+
+  .stage { position: relative; z-index: 2; }
+
+  h1,h2,h3{
+    font-family: 'Caveat', cursive;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  a { color: inherit; }
+
+  /* ---------- floating sticker layer ---------- */
+  #stickerLayer{
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .float-sticker{
+    position: absolute;
+    opacity: 0.55;
+    animation: drift 14s ease-in-out infinite;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+  }
+  @keyframes drift{
+    0%,100%{ transform: translateY(0px) rotate(var(--r,0deg)); }
+    50%{ transform: translateY(-22px) rotate(calc(var(--r,0deg) + 8deg)); }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 6rem 1.5rem 4rem;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'Patrick Hand', cursive;
+    color: var(--pink-deep);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+    display:inline-flex;
+    align-items:center;
+    gap: 0.4rem;
+  }
+  .hero h1{
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    max-width: 16ch;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.5);
+  }
+  .hero h1 .accent{ color: var(--red); }
+  .hero-sub{
+    font-family:'Patrick Hand', cursive;
+    font-size: 1.35rem;
+    color: var(--ink-soft);
+    margin-top: 1.1rem;
+    max-width: 34ch;
+  }
+  .hero-photo{
+    margin-top: 2.6rem;
+    position: relative;
+  }
+  .polaroid{
+    background: var(--cream-card);
+    padding: 14px 14px 46px;
+    box-shadow: var(--shadow);
+    display: inline-block;
+    position: relative;
+  }
+  .polaroid img{
+    display:block;
+    max-width: 280px;
+    width: 62vw;
+    height: auto;
+    object-fit: cover;
+  }
+  .polaroid figcaption{
+    position:absolute;
+    bottom: 10px;
+    left: 0; right:0;
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-size: 1.35rem;
+    color: var(--ink-soft);
+  }
+  .scroll-cue{
+    margin-top: 3rem;
+    font-family:'Patrick Hand', cursive;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(8px);} }
+
+  /* ---------- section shell ---------- */
+  section{
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  .section-title{
+    text-align:center;
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin-bottom: 0.6rem;
+  }
+  .section-kicker{
+    text-align:center;
+    font-family:'Patrick Hand', cursive;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- journal entries (photo + note) ---------- */
+  .entry{
+    display:flex;
+    gap: 3rem;
+    align-items:center;
+    margin-bottom: 6rem;
+    flex-wrap: wrap;
+  }
+  .entry.reverse{ flex-direction: row-reverse; }
+  .entry-photo{ flex: 1 1 320px; display:flex; justify-content:center; }
+  .entry-photo .polaroid{ transform: rotate(var(--tilt, -4deg)); transition: transform 0.35s ease; }
+  .entry-photo .polaroid:hover{ transform: rotate(0deg) scale(1.03); }
+  .entry-photo img{ width: 320px; max-width: 80vw; }
+
+  .tape{
+    position:absolute;
+    width: 90px; height: 34px;
+    top: -16px; left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    background: var(--tape);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    opacity: 0.9;
+  }
+  .tape.yellow{ background: var(--tape-yellow); }
+  .tape.sage{ background: var(--tape-sage); }
+
+  .entry-note{
+    flex: 1 1 320px;
+    background: var(--cream-card);
+    border-radius: 18px;
+    padding: 2rem 2.2rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    transform: rotate(var(--tilt2, 1.5deg));
+  }
+  .entry-note::before{
+    content: attr(data-sticker);
+    position: absolute;
+    font-size: 2.4rem;
+    top: -20px;
+    right: -14px;
+    transform: rotate(12deg);
+  }
+  .entry-note h3{
+    font-size: 2rem;
+    color: var(--pink-deep);
+    margin-bottom: 0.6rem;
+  }
+  .entry-note p{
+    font-family:'Patrick Hand', cursive;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .stamp{
+    display:inline-block;
+    margin-top: 1rem;
+    font-family:'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--sage);
+    border: 2px dashed var(--sage);
+    padding: 0.15rem 0.7rem;
+    border-radius: 8px;
+    transform: rotate(-3deg);
+  }
+
+  /* ---------- gallery strip ---------- */
+  .gallery-strip{
+    display:flex;
+    gap: 1.6rem;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .gallery-strip .polaroid{
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.3s ease, z-index 0s;
+  }
+  .gallery-strip .polaroid:hover{ transform: rotate(0) scale(1.06); z-index: 5; }
+  .gallery-strip img{ width: 210px; max-width: 40vw; }
+
+  /* ---------- envelope / letter ---------- */
+  .letter-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .envelope{
+    width: min(420px, 86vw);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    margin-top: 1.5rem;
+  }
+  .envelope-body{
+    background: var(--pink);
+    border-radius: 10px;
+    height: 240px;
+    position: relative;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .envelope-flap{
+    position:absolute;
+    top:0; left:0; right:0;
+    height: 130px;
+    background: var(--pink-deep);
+    clip-path: polygon(0 0, 100% 0, 50% 90%);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+  }
+  .envelope.open .envelope-flap{ transform: rotateX(180deg); }
+  .envelope-seal{
+    position:absolute;
+    top: 84px; left:50%;
+    transform: translate(-50%,-50%);
+    width: 46px; height:46px;
+    background: var(--red);
+    border-radius: 50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff; font-family:'Caveat',cursive; font-size:1.4rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    z-index: 4;
+    transition: opacity 0.3s ease;
+  }
+  .envelope.open .envelope-seal{ opacity: 0; }
+  .envelope-hint{
+    position:absolute;
+    bottom: 14px; left:0; right:0;
+    text-align:center;
+    font-family:'Patrick Hand', cursive;
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    z-index: 2;
+  }
+  .letter-paper{
+    background: var(--cream-card);
+    max-width: 480px;
+    width: min(480px, 88vw);
+    margin: 1.8rem auto 0;
+    padding: 2.2rem 2rem;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    text-align: left;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: max-height 0.7s ease, opacity 0.6s ease, transform 0.6s ease, margin 0.6s ease, padding 0.6s ease;
+  }
+  .letter-paper.show{
+    max-height: 900px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .letter-paper .sign{
+    font-family:'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--red);
+    margin-top: 1rem;
+    display:block;
+  }
+
+  /* ---------- surprise button section ---------- */
+  .surprise-section{
+    text-align:center;
+    padding-bottom: 8rem;
+  }
+  .surprise-btn{
+    font-family:'Caveat', cursive;
+    font-size: 1.6rem;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2.4rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(193,68,58,0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .surprise-btn:hover{ transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 26px -8px rgba(193,68,58,0.7); }
+  .surprise-btn:active{ transform: translateY(0) scale(0.98); }
+
+  .big-reveal{
+    margin-top: 3rem;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,1.4,.4,1);
+  }
+  .big-reveal.show{ opacity:1; transform: scale(1); }
+  .big-reveal h2{
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    color: var(--red);
+    line-height: 1.15;
+  }
+  .big-reveal p{
+    font-family:'Patrick Hand', cursive;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+    max-width: 40ch;
+    margin-left:auto; margin-right:auto;
+  }
+
+  #confettiCanvas{
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 50;
+  }
+
+  footer{
+    text-align:center;
+    padding: 3rem 1.5rem 4rem;
+    font-family:'Patrick Hand', cursive;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 720px){
+    .entry, .entry.reverse{ flex-direction: column; }
+    .entry-note::before{ top:-16px; right: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.2s !important; }
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stickerLayer"></div>
+<canvas id="confettiCanvas"></canvas>
+
+<div class="stage">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow">✎ a small corner of the internet, just for you</span>
+    <h1>for the <span class="accent">hardest working</span>, most loved person i know</h1>
+    <p class="hero-sub">a little scrapbook of us — open it whenever you need a reminder.</p>
+    <div class="hero-photo">
+      <figure class="polaroid" style="transform: rotate(-3deg);">
+        <img src="images/photo3.jpg" alt="him smiling with a bouquet of red roses" loading="lazy">
+        <figcaption>you, being adorable ♡</figcaption>
+      </figure>
+    </div>
+    <div class="scroll-cue">keep scrolling, there's more ↓</div>
+  </section>
+
+  <!-- ENTRY 1 -->
+  <section>
+    <div class="entry reveal" style="--tilt:-4deg; --tilt2:1.2deg;">
+      <div class="entry-photo">
+        <figure class="polaroid">
+          <span class="tape"></span>
+          <img src="images/photo1.jpg" alt="us on the subway, arms wrapped around each other" loading="lazy">
+          <figcaption>somewhere on a train, us</figcaption>
+        </figure>
+      </div>
+      <div class="entry-note" data-sticker="✨">
+        <h3>page one</h3>
+        <p>Every ordinary place turns into somewhere I want to remember, just because you're in it. Even a random subway ride. Even a Tuesday.</p>
+        <span class="stamp">est. always</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRY 2 -->
+  <section>
+    <div class="entry reverse reveal" style="--tilt:3deg; --tilt2:-1.5deg;">
+      <div class="entry-photo">
+        <figure class="polaroid">
+          <span class="tape yellow"></span>
+          <img src="images/photo4.jpg" alt="us smiling under colorful projected lights" loading="lazy">
+          <figcaption>that night with all the lights</figcaption>
+        </figure>
+      </div>
+      <div class="entry-note" data-sticker="🌙">
+        <h3>page two</h3>
+        <p>I love how easy it is to be happy next to you. No effort, no performance, just you, me, and something silly to laugh about.</p>
+        <span class="stamp">forever mood</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <section>
+    <h2 class="section-title reveal">bits & pieces</h2>
+    <p class="section-kicker reveal">a few more that live rent-free in my camera roll</p>
+    <div class="gallery-strip reveal">
+      <figure class="polaroid" style="--tilt:-6deg;"><img src="images/photo2.jpg" alt="mirror selfie of us" loading="lazy"><figcaption>getting ready together</figcaption></figure>
+      <figure class="polaroid" style="--tilt:4deg;"><img src="images/photo5.jpg" alt="mirror selfie, matching jackets" loading="lazy"><figcaption>we kind of matched</figcaption></figure>
+      <figure class="polaroid" style="--tilt:-3deg;"><img src="images/photo6.jpg" alt="sunny outdoor selfie" loading="lazy"><figcaption>golden hour, always</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- WHY I'M PROUD -->
+  <section>
+    <h2 class="section-title reveal">the part i really wanted to say</h2>
+    <p class="section-kicker reveal">not just cute pictures — this bit is the whole point</p>
+    <div class="entry reveal" style="--tilt:-2deg; --tilt2:1deg;">
+      <div class="entry-photo">
+        <figure class="polaroid">
+          <span class="tape sage"></span>
+          <img src="images/photo3.jpg" alt="him with roses, smiling" loading="lazy">
+          <figcaption>my favorite person</figcaption>
+        </figure>
+      </div>
+      <div class="entry-note" data-sticker="💪">
+        <h3>to my hardworking love</h3>
+        <p>I see how much you carry, how many late nights you show up for, how hard you're building the life you want. I know it isn't always easy, but I hope you know it doesn't go unnoticed — I notice everything. I am so, so proud of you. Not just for what you're working toward, but for who you are while you do it.</p>
+        <span class="stamp">i see you</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENVELOPE LETTER -->
+  <section>
+    <div class="letter-wrap reveal">
+      <h2 class="section-title">one more thing</h2>
+      <p class="section-kicker">tap the envelope</p>
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open envelope to read letter">
+        <div class="envelope-body">
+          <div class="envelope-flap"></div>
+          <div class="envelope-seal">♡</div>
+          <div class="envelope-hint">tap to open</div>
+        </div>
+      </div>
+      <div class="letter-paper" id="letterPaper">
+        <p>Hi love,</p>
+        <p>If you're reading this, it means you actually clicked around this silly little site I made for you — which honestly already makes me smile, because that's so you. Curious, patient, always willing to poke at something new.</p>
+        <p>I made this because I wanted you to have a place that's just... us. All the small, ordinary, glowing moments. The train rides, the mirror selfies, the roses you brought for no reason at all.</p>
+        <p>I love you so much it's a little embarrassing sometimes. And I am endlessly, endlessly proud of you for working as hard as you do.</p>
+        <span class="sign">— always yours</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SURPRISE -->
+  <section class="surprise-section">
+    <h2 class="section-title reveal">okay, last one, i promise</h2>
+    <p class="section-kicker reveal">this one has a surprise</p>
+    <button class="surprise-btn reveal" id="surpriseBtn">tap for a surprise ✧</button>
+    <div class="big-reveal" id="bigReveal">
+      <h2>I LOVE YOU SO MUCH.</h2>
+      <p>and i am so, so proud of you for working so hard. i hope you always know that.</p>
+    </div>
+  </section>
+
+  <footer>
+    made with a lot of love (and a little bit of code) — for you, always. ♡
+  </footer>
+
+</div>
+
+<script>
+// ---------- floating stickers background ----------
+const stickerEmojis = ['💛','✨','🌸','💌','⭐','🍒','☁️','💫','🌷','♡'];
+const layer = document.getElementById('stickerLayer');
+const stickerCount = window.innerWidth < 640 ? 10 : 18;
+for(let i=0;i<stickerCount;i++){
+  const el = document.createElement('div');
+  el.className = 'float-sticker';
+  el.textContent = stickerEmojis[i % stickerEmojis.length];
+  el.style.left = (Math.random()*96) + 'vw';
+  el.style.top = (Math.random()*100) + 'vh';
+  el.style.fontSize = (1 + Math.random()*1.6) + 'rem';
+  el.style.setProperty('--r', (Math.random()*30-15) + 'deg');
+  el.style.animationDuration = (10 + Math.random()*10) + 's';
+  el.style.animationDelay = (Math.random()*6) + 's';
+  layer.appendChild(el);
+}
+
+// ---------- scroll reveal ----------
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el=>io.observe(el));
+
+// ---------- envelope open ----------
+const envelope = document.getElementById('envelope');
+const letterPaper = document.getElementById('letterPaper');
+function openEnvelope(){
+  envelope.classList.add('open');
+  letterPaper.classList.add('show');
+}
+envelope.addEventListener('click', openEnvelope);
+envelope.addEventListener('keypress', (e)=>{ if(e.key==='Enter' || e.key===' ') openEnvelope(); });
+
+// ---------- confetti ----------
+const canvas = document.getElementById('confettiCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const shapes = ['♡','✦','●'];
+const colors = ['#C1443A','#F2A6B4','#E07E90','#8AA07E','#F6C453'];
+let particles = [];
+
+function spawnConfetti(){
+  particles = [];
+  const count = 90;
+  for(let i=0;i<count;i++){
+    particles.push({
+      x: canvas.width/2 + (Math.random()*260-130),
+      y: canvas.height*0.35 + (Math.random()*40-20),
+      vx: (Math.random()*6-3),
+      vy: -(Math.random()*8+4),
+      gravity: 0.22,
+      rot: Math.random()*360,
+      vrot: Math.random()*10-5,
+      size: 10 + Math.random()*12,
+      shape: shapes[Math.floor(Math.random()*shapes.length)],
+      color: colors[Math.floor(Math.random()*colors.length)],
+      life: 0,
+      maxLife: 110 + Math.random()*40
+    });
+  }
+  requestAnimationFrame(animateConfetti);
+}
+
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let alive = false;
+  particles.forEach(p=>{
+    if(p.life > p.maxLife) return;
+    alive = true;
+    p.vy += p.gravity;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rot += p.vrot;
+    p.life++;
+    const fade = 1 - (p.life/p.maxLife);
+    ctx.save();
+    ctx.globalAlpha = Math.max(fade,0);
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot * Math.PI/180);
+    ctx.fillStyle = p.color;
+    ctx.font = p.size + 'px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p.shape, 0, 0);
+    ctx.restore();
+  });
+  if(alive){ requestAnimationFrame(animateConfetti); }
+  else { ctx.clearRect(0,0,canvas.width,canvas.height); }
+}
+
+const surpriseBtn = document.getElementById('surpriseBtn');
+const bigReveal = document.getElementById('bigReveal');
+surpriseBtn.addEventListener('click', ()=>{
+  bigReveal.classList.add('show');
+  spawnConfetti();
+  surpriseBtn.textContent = 'again? ✧';
+  bigReveal.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+
+</body>
+</html>
